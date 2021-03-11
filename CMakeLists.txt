@@ -104,11 +104,24 @@ IF(${NLOPT_FOUND})
   target_link_libraries(point_to_bearing_node
     ${catkin_LIBRARIES} ${OpenCV_LIBRARIES} ${NLOPT_LIBRARIES}
   )
+
+  install(TARGETS point_to_bearing_node
+  ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
 ENDIF()
 
 # Install nodelet library
 install(TARGETS ${PROJECT_NAME}_nodelet
   DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+)
+
+# Install executables
+install(TARGETS image_undistort_node stereo_info_node stereo_undistort_node depth_node dense_stereo_node
+  ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 
 # Install header files
